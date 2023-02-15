@@ -1,4 +1,5 @@
 import json
+from pandas import read_excel,options
 
 def lambda_handler(event, context):
    message = 'Hello {} !'.format(event['key1'])
