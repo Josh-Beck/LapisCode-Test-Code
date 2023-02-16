@@ -24,3 +24,6 @@ def lambda_handler(event, context):
    return {
        'message' : message
    }
+
+def functionName(testing, lastname ='Mark', standard = None):
+   print(lastName)
