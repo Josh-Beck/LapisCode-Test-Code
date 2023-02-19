@@ -18,7 +18,7 @@ def lambda_handler(event, context):
       print("b is greater than a")
    elif a == b:
       print("a and b are equal")
-   elif functionName(a):
+   elif functionName(a,"hello"):
       pass
    else:
       print("a is greater than b")
