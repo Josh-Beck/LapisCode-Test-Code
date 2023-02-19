@@ -18,6 +18,8 @@ def lambda_handler(event, context):
       print("b is greater than a")
    elif a == b:
       print("a and b are equal")
+   elif functionName(a):
+      pass
    else:
       print("a is greater than b")
    
@@ -27,3 +29,4 @@ def lambda_handler(event, context):
 
 def functionName(testing, lastname ='Mark', standard = None):
    print(lastName)
+   return False
