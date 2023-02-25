@@ -10,8 +10,8 @@ exports.handler = async function(event, context) {
   };
 
   try {
-	switch (event.routeKey) {
-  	case "DELETE /items/{id}":
+	switch (event.httpMethod) {
+  	case "DELETE":
     	await dynamo
       	.delete({
         	TableName: "http-crud-tutorial-items",
@@ -22,7 +22,7 @@ exports.handler = async function(event, context) {
       	.promise();
     	body = `Deleted item ${event.pathParameters.id}`;
     	break;
-  	case "GET /items/{id}":
+  	case "GET":
     	body = await dynamo
       	.get({
         	TableName: "http-crud-tutorial-items",
@@ -32,10 +32,7 @@ exports.handler = async function(event, context) {
       	})
       	.promise();
     	break;
-  	case "GET /items":
-    	body = await dynamo.scan({ TableName: "http-crud-tutorial-items" }).promise();
-    	break;
-  	case "PUT /items":
+  	case "PUT":
     	let requestJSON = JSON.parse(event.body);
     	await dynamo
       	.put({
@@ -50,7 +47,7 @@ exports.handler = async function(event, context) {
     	body = `Put item ${requestJSON.id}`;
     	break;
   	default:
-    	throw new Error(`Unsupported route: "${event.routeKey}"`);
+    	throw new Error(`Unsupported method: "${event.httpMethod}"`);
 	}
   } catch (err) {
 	statusCode = 400;
