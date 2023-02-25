@@ -11,17 +11,6 @@ exports.handler = async function(event, context) {
 
   try {
 	switch (event.httpMethod) {
-  	case "DELETE":
-    	await dynamo
-      	.delete({
-        	TableName: "http-crud-tutorial-items",
-        	Key: {
-          	id: event.pathParameters.id
-        	}
-      	})
-      	.promise();
-    	body = `Deleted item ${event.pathParameters.id}`;
-    	break;
   	case "GET":
     	body = await dynamo
       	.get({
