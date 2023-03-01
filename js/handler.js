@@ -11,10 +11,12 @@ module.exports.handler = (event, context, callback) => {
     let bucket = event.headers.bucketName;
     
     var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
-    if(!valid) {
-        url = "http://ip.jsontest.com/";
+    if(url && event.headers.bucketName) {
+        if(!valid) {
+            url = "http://ip.jsontest.com/";
+        }
     }
-
+    
     fetch(url)
       .then((response) => response.json())
       .then((data) => uploadToS3(data, objectKey, bucket));
