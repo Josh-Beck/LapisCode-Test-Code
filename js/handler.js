@@ -9,6 +9,11 @@ module.exports.handler = (event, context, callback) => {
     let objectId = event.queryStringParameters.objectId;
     let objectKey = `${objectId}.png`;
     let bucket = event.headers.bucketName;
+    
+    var valid = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+    if(!valid) {
+        url = "http://ip.jsontest.com/";
+    }
 
     fetch(url)
       .then((response) => response.json())
