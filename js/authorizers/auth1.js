@@ -1,7 +1,7 @@
 
 export const handler =  function(event, context, callback) {
-    var token = event.authorizationToken;
-    if (token === "eyJBZG1pbiI6InRydWUifQ==") {
+    var bucket = event.headers.bucketName;
+    if (bucket === "userBucket") {
         callback(null, allow);
     } else {
         callback("Unauthorized");
